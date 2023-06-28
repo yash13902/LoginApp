@@ -1,25 +1,23 @@
 const express = require("express");
-
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: "./.env" });
 const app = express();
+const connectDB = require("./DB/connect");
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+const DB = process.env.MONGODB_URL;
 
-app.get("/about", (req, res) => {
-  console.log("Hi i am about page");
-  res.send("Hello World");
-});
-app.get("/contact", (req, res) => {
-  res.send("Hello World");
-});
-app.get("/signin", (req, res) => {
-  res.send("Hello World");
-});
-app.get("/signup", (req, res) => {
-  res.send("Hello World");
-});
+connectDB(DB);
 
-app.listen(3000, () => {
-  console.log("server is running on port 3000");
+app.use(express.json());
+
+//we link the router files
+app.use(require("./routes/routes"));
+
+const User = require("./models/userSchema");
+
+const port = Number(process.env.PORT) || 3000;
+
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
 });
