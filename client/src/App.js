@@ -9,6 +9,7 @@ import Register from "./Components/Register";
 import ErrorPage from "./Components/ErrorPage";
 
 import "./App.css";
+import Logout from "./Components/Logout";
 const App = () => {
   return (
     <>
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
+        <Route exact path="/logout" element={<Logout />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

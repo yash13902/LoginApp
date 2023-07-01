@@ -4,6 +4,9 @@ const path = require("path");
 dotenv.config({ path: "./.env" });
 const app = express();
 const connectDB = require("./DB/connect");
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
 
 const DB = process.env.MONGODB_URL;
 
